@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import contactRoutes from './../routes/contactRoutes';
+
 
 dotenv.config();
 
@@ -9,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+app.use('/api/contacts', contactRoutes);
 async function db() {
   try {
     await mongoose.connect(process.env.MONGO_URI as string, {
